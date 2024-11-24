@@ -8,7 +8,7 @@ const PORT=process.env.PORT|| 3000;
 app.use(express.static(path.join(__dirname, 'public')));
 //connect to DB
 
-connectDB();
+//connectDB();
 app.use(express.json());
 
 app.get("/",(req,res)=>{
