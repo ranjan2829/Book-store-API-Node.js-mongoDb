@@ -14,8 +14,8 @@ const connectDB=async()=>{
 
     }
     finally{
-        mongoose.connection.close()
-        console.log("Connections closed !!!!!");
+        //mongoose.connection.close()
+        //console.log("Connections closed !!!!!");
         
     }
 }

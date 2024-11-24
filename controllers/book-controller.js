@@ -43,7 +43,7 @@ const getSingleBookById=async(req,res)=>{
             message:"Book with found",
             data:BookID,
         });
-        
+
 
 
     }
@@ -60,8 +60,22 @@ const getSingleBookById=async(req,res)=>{
 };
 const addNewBook=async(req,res)=>{
     try{
+        const newBook=req.body;
+        const creatBook=await Book.create(newBook);
 
+
+
+    
+        if (newBook) {
+            res.status(201).json({
+            success: true,
+            message: "Book added successfully",
+            data: newBook,
+            });
+        }
     }
+
+  
     catch{
         console.log(e);
         
@@ -75,8 +89,27 @@ const addNewBook=async(req,res)=>{
 };
 const updateBook=async(req,res)=>{
     try{
+        const updateBook=req.body;
+        const updateBookID=req.params.id;
+        const update=await Book.findByIdAndUpdate(
+            updateBookID,updateBook,{
+                new:true,
+            }
+        );
+        if(!update){
+            res.status(404).json({
+                success:false,
+                message:"Book is not found with this ID",
+            });
+        }
+        res.status(200).json({
+            success:true,
+            message:"Book updated",
+            data:update,
+        });
 
     }
+
     catch{
         console.log(e);
         
@@ -90,6 +123,20 @@ const updateBook=async(req,res)=>{
 };
 const deleteBook=async(req,res)=>{
     try{
+        const getCurrentBookID = req.params.id;
+        const deletedBook = await Book.findByIdAndDelete(getCurrentBookID);
+    
+        if (!deletedBook) {
+          res.status(404).json({
+            success: false,
+            message: "Book is not found with this ID",
+          });
+        }
+    
+        res.status(200).json({
+          success: true,
+          data: deletedBook,
+        });
 
     }
     catch{
