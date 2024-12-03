@@ -6,73 +6,78 @@
     <title>Book Store API</title>
     <link rel="icon" href="/3.ico" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
     <div class="container">
-        <!-- Header Section -->
         <header class="header">
-            <h1>📚 Book Store API</h1>
+            <h1>
+                <span class="icon">📚</span>
+                Book Store API
+            </h1>
             <p class="subtitle">Manage your books with ease!</p>
         </header>
 
-        <!-- Tiles Section -->
         <div class="tiles">
             <!-- Add New Book -->
             <div class="tile glass">
-                <h2>Add New Book</h2>
-                <form class="book-form">
+                <h2><i class="fas fa-plus-circle"></i> Add New Book</h2>
+                <form id="addBookForm" class="book-form">
                     <div class="form-group">
                         <label for="title">Title:</label>
-                        <input type="text" id="title" placeholder="Enter book title">
+                        <input type="text" id="title" required placeholder="Enter book title">
                     </div>
                     <div class="form-group">
                         <label for="author">Author:</label>
-                        <input type="text" id="author" placeholder="Enter author name">
+                        <input type="text" id="author" required placeholder="Enter author name">
                     </div>
                     <button type="submit">Add Book</button>
                 </form>
-            </div>
-
-            <!-- Update Book -->
-            <div class="tile glass">
-                <h2>Update Book</h2>
-                <form class="book-form">
-                    <div class="form-group">
-                        <label for="book-id">Book ID:</label>
-                        <input type="text" id="book-id" placeholder="Enter book ID">
-                    </div>
-                    <div class="form-group">
-                        <label for="new-title">New Title:</label>
-                        <input type="text" id="new-title" placeholder="Enter new title">
-                    </div>
-                    <div class="form-group">
-                        <label for="new-author">New Author:</label>
-                        <input type="text" id="new-author" placeholder="Enter new author">
-                    </div>
-                    <button type="submit">Update Book</button>
-                </form>
+                <div id="addBookResult" class="result-container"></div>
             </div>
 
             <!-- Get All Books -->
             <div class="tile glass">
-                <h2>Get All Books</h2>
-                <button class="action-button">Fetch All Books</button>
+                <h2><i class="fas fa-books"></i> All Books</h2>
+                <button id="getAllBooks" class="action-button">Refresh Books List</button>
+                <div id="getAllBooksResult" class="result-container"></div>
             </div>
 
             <!-- Get Single Book -->
             <div class="tile glass">
-                <h2>Get Single Book</h2>
-                <form class="book-form">
+                <h2><i class="fas fa-search"></i> Get Single Book</h2>
+                <form id="getSingleBookForm" class="book-form">
                     <div class="form-group">
                         <label for="single-book-id">Book ID:</label>
-                        <input type="text" id="single-book-id" placeholder="Enter book ID">
+                        <input type="text" id="single-book-id" required placeholder="Enter book ID">
                     </div>
                     <button type="submit">Fetch Book</button>
                 </form>
+                <div id="getSingleBookResult" class="result-container"></div>
+            </div>
+
+            <!-- Update Book -->
+            <div class="tile glass">
+                <h2><i class="fas fa-edit"></i> Update Book</h2>
+                <form id="updateBookForm" class="book-form">
+                    <div class="form-group">
+                        <label for="update-book-id">Book ID:</label>
+                        <input type="text" id="update-book-id" required placeholder="Enter book ID">
+                    </div>
+                    <div class="form-group">
+                        <label for="update-title">New Title:</label>
+                        <input type="text" id="update-title" required placeholder="Enter new title">
+                    </div>
+                    <div class="form-group">
+                        <label for="update-author">New Author:</label>
+                        <input type="text" id="update-author" required placeholder="Enter new author">
+                    </div>
+                    <button type="submit">Update Book</button>
+                </form>
+                <div id="updateBookResult" class="result-container"></div>
             </div>
         </div>
     </div>
-
-    <script src="script.js"></script>
+    <script src="app.js"></script>
 </body>
 </html>

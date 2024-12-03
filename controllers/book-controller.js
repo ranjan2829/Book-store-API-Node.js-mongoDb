@@ -12,7 +12,7 @@ const getAllBooks = async (req, res) => {
     } else {
       res.status(404).json({
         success: false,
-        message: "Bo books found in collection",
+        message: "No books found in collection",
       });
     }
   } catch (e) {
@@ -52,20 +52,33 @@ const getSingleBookById = async (req, res) => {
 
 const addNewBook = async (req, res) => {
   try {
-    const newBookFormData = req.body;
-    const newlyCreatedBook = await Book.create(newBookFormData);
-    if (newBookFormData) {
-      res.status(201).json({
-        success: true,
-        message: "Book added successfully",
-        data: newlyCreatedBook,
+    const { title, author } = req.body;
+    
+    // Validate input
+    if (!title || !author) {
+      return res.status(400).json({
+        success: false,
+        message: "Title and author are required",
       });
     }
+
+    const newBookFormData = { title, author };
+    const newlyCreatedBook = await Book.create(newBookFormData);
+    
+    console.log('New book created:', newlyCreatedBook); // Debug log
+    
+    res.status(201).json({
+      success: true,
+      message: "Book added successfully",
+      data: newlyCreatedBook,
+    });
+    
   } catch (e) {
-    console.log(e);
+    console.log('Error adding book:', e);
     res.status(500).json({
       success: false,
       message: "Something went wrong! Please try again",
+      error: e.message
     });
   }
 };
