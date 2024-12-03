@@ -1,22 +1,16 @@
-const mongoose=require("mongoose");
-const connectDB=async()=>{
-    try{
+const mongoose = require("mongoose");
+
+const connectDB = async () => {
+    try {
         await mongoose.connect(
-            "mongodb+srv://ranjanshitole3129:ranjan3129@cluster0.ssp5a.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+            process.env.MONGO_URL  // Fixed typo: 'proce' to 'process'
         );
-        console.log("MongoDb Connection done !");
-        
-
+        console.log("MongoDB Connection done!");
     }
-    catch(e){
-        console.error("MOngoDB onnection Failed ",e);
+    catch (e) {
+        console.error("MongoDB Connection Failed ", e);
         process.exit(1);
+    }
+};
 
-    }
-    finally{
-        //mongoose.connection.close()
-        //console.log("Connections closed !!!!!");
-        
-    }
-}
-module.exports=connectDB;
+module.exports = connectDB;
