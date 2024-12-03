@@ -1,11 +1,9 @@
-
-
-
 require("dotenv").config();
 const connectDB = require("./Database/Database");
 const path = require("path");
 const bookRoutes = require("./Routes/book-routes");
 const express = require("express");
+const errorHandler = require('./middleware/errorHandler');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -26,10 +24,9 @@ app.get('/', (req, res) => {
 
 app.use("/api/books", bookRoutes);
 
+app.use(errorHandler);
+
 // Start server
-app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
-    console.log(`Visit http://localhost:${PORT} to access the application`);
-});
+module.exports = app;
 
 
