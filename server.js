@@ -26,6 +26,10 @@ app.get('/', (req, res) => {
 app.use("/api/books", bookRoutes);
 
 app.use(errorHandler);
+app.listen(3000, () => {
+    console.log(`✅ Server running on http://localhost:${PORT}`);
+});
+
 
 // Start server
 module.exports = app;
